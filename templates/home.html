@@ -6,28 +6,29 @@
 	<title>{% block title %}Django_Boards{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Peralta" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 	
   {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
-  {% block content %}table class="table">
+  {% block content %}<table class="table">
     <thead class="thead-inverse">
       <tr>
-        <th>Board</th>
-        <th>Posts</th>
-        <th>Topics</th>
-        <th>Last Post</th>
+        <th><strong>Board:</strong> {{ boards_count }}</th>
+        <th><strong>Posts:</strong> {{ posts_count}}</th>
+        <th><strong>Topics</strong>{{ topic.subject }}</th>
+        <th><strong>Last Post</strong></th>
       </tr>
     </thead>
     <tbody>
       {% for board in boards %}
         <tr>
+          <!--
           <td>
             <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
             <small class="text-muted d-block">{{ board.description }}</small>
           </td>
-          <!--<td class="align-middle">
+          <td class="align-middle">
             {{ board.get_posts_count }}
           </td>
           <td class="align-middle">

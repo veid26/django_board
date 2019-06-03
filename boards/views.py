@@ -7,9 +7,11 @@ from django.db.models import Count
 class BoardListView(ListView):
     model = Board
     context_object_name = 'boards'
-    template_name = 'home.html'
+    template_name = 'boars.html'
 	
 def home(request):
 	all_boards = Board.objects.all()
+	boards_count = Board.objects.all().count()
+	posts_count = Post.objects.all().count()
 	return render(request, 'home.html',
-	context ={'all_boards':all_boards,})
+	context ={'all_boards':all_boards, 'boards_count':boards_count})

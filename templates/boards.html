@@ -1,0 +1,19 @@
+{% etends "home.html" %}
+
+{% block content %}
+
+  <h1> Boards </h1>
+
+  {% if board_list %}
+  <ul>
+
+  {% for board in board%}  }
+  <li>
+    <a href="{{ board.get_absolute_url }}">{{board.name}}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>No boards in boards D: </p>
+  {% endif %}
+  {% endblock %}
