@@ -37,7 +37,10 @@ class Topic(models.Model):
 		return self.posts.order_by('-created_at')[:10]
 
 class Post(models.Model):
-    message = models.TextField(max_length=4000)
-    topic = models.ForeignKey(Topic, related_name='posts', on_delete=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(null=True)
+	message = models.TextField(max_length=4000)
+	topic = models.ForeignKey(Topic, related_name='posts', on_delete=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(null=True)
+
+	def __str__(self):
+		return self.message
