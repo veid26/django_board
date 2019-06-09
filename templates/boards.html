@@ -1,19 +1,12 @@
-{% extends "home.html" %}
+{% extends 'home.html' %}
 
-{% block content %}
+{% load humanize %}
 
-  <h1> Boards </h1>
+{% block title %}
+  {{ board.name }} - {{ block.super }}
+{% endblock %}
 
-  {% if board_list %}
-  <ul>
-
-  {% for board in board%}  }
-  <li>
-    <a href="{{ board.get_absolute_url }}">{{board.name}}</a>
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-  <p>No boards in boards D: </p>
-  {% endif %}
-  {% endblock %}
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
+  <li class="breadcrumb-item active">{{ board.name }}</li>
+{% endblock %}
