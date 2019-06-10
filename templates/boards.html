@@ -1,12 +1,40 @@
 {% extends 'home.html' %}
 
-{% load humanize %}
+{% load gravatar %}
 
-{% block title %}
-  {{ board.name }} - {{ block.super }}
-{% endblock %}
+{% block title %}{{ boards.subject }}{% endblock %}
 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
-  <li class="breadcrumb-item active">{{ board.name }}</li>
+  <li class="breadcrumb-item"><a href="{% url 'board_topics' topic.board.pk %}">{{ board.name }}</a></li>
+  <li class="breadcrumb-item active">{{ board.subject }}</li>
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="mb-4">
+    <a href="{% url 'reply_topic' topic.board.pk topic.pk %}" class="btn btn-primary" role="button">Reply</a>
+  </div>
+
+  {% for board in boards %}
+    <div id="{{ post.pk }}" class="card {% if forloop.last %}mb-4{% else %}mb-2{% endif %} {% if forloop.first %}border-dark{% endif %}">
+      {% if forloop.first %}
+        <div class="card-header text-white bg-dark py-2 px-3">{{ board.subject }}</div>
+      {% endif %}
+            <!--{% if post.created_by == user %}
+              <div class="mt-3">
+                <a href="{% url 'edit_post' post.topic.board.pk post.topic.pk post.pk %}"
+                   class="btn btn-primary btn-sm"
+                   role="button">Edit</a>
+              </div>
+            {% endif %}-->
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+  <!--{% include 'includes/pagination.html' %}
+-->
 {% endblock %}

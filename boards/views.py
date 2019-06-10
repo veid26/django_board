@@ -14,8 +14,7 @@ from .models import Board, Post, Topic
 class BoardListView(ListView):
     model = Board
     context_object_name = 'boards'
-    template_name = 'boars.html'
-
+    template_name = 'boards.html'
 
 class TopicListView(ListView):
     model = Topic
