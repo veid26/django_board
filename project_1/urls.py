@@ -21,9 +21,9 @@ from django.views.generic import RedirectView
 from django.conf.urls import url
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('home/', include('boards.urls')),
-    path('boards/', include('boards.urls')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^home/$', views.BoardListView.as_view(), name='home'),
+    url(r'^boards/$', include('boards.urls')),
     url(r'^boards/(?P<pk>\d+)/$', views.TopicListView.as_view(), name='board_topics'),
     url(r'^boards/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
     url(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.PostListView.as_view(), name='topic_posts'),

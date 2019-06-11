@@ -10,11 +10,10 @@ from django.utils.decorators import method_decorator
 from .models import Board, Post, Topic
 
 
-
 class BoardListView(ListView):
-    model = Board
-    context_object_name = 'boards'
-    template_name = 'boards.html'
+	model = Board
+	context_object_name = 'boards'
+	template_name = 'boards.html'
 
 class TopicListView(ListView):
     model = Topic
@@ -82,7 +81,6 @@ def reply_topic(request, pk, topic_pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.topic = topic
-            post.created_by = request.user
             post.save()
 
             topic.last_updated = timezone.now()
@@ -98,7 +96,8 @@ def reply_topic(request, pk, topic_pk):
             return redirect(topic_post_url)
     else:
         form = PostForm()
-    return render(request, 'reply_topic.html', {'topic': topic, })
+    return render(request, 'reply_topic.html', {'topic': topic})
+
 
 class PostUpdateView(UpdateView):
     model = Post

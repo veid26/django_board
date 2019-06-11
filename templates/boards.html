@@ -1,7 +1,5 @@
 {% extends 'home.html' %}
 
-{% load gravatar %}
-
 {% block title %}{{ boards.subject }}{% endblock %}
 
 {% block breadcrumb %}
@@ -9,8 +7,6 @@
   <li class="breadcrumb-item"><a href="{% url 'board_topics' topic.board.pk %}">{{ board.name }}</a></li>
   <li class="breadcrumb-item active">{{ board.subject }}</li>
 {% endblock %}
-
-
 {% block content %}
 
   <div class="mb-4">
@@ -35,6 +31,6 @@
     </div>
   {% endfor %}
 
-  <!--{% include 'includes/pagination.html' %}
--->
+{% include 'includes/pagination.html' %}
+
 {% endblock %}
